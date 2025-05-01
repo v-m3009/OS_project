@@ -45,21 +45,16 @@ void process_command() {
 
     if (strcmp(buf, "list_hunts") == 0) {
         printf("[Monitor] Listing hunts.\n");
-        fflush(stdout);
     } else if (strcmp(buf, "list_treasures") == 0) {
         printf("[Monitor] Listing treasures.\n");
-        fflush(stdout);
     } else if (strcmp(buf, "view_treasure") == 0) {
         printf("[Monitor] Viewing treasure.\n");
-        fflush(stdout);
     } else if (strcmp(buf, "stop") == 0) {
         printf("[Monitor] Stopping...\n");
-        fflush(stdout);
         usleep(2000000);
         exit(0);
     } else {
         printf("[Monitor] Unknown command: %s\n", buf);
-        fflush(stdout);
     }
 }
 
