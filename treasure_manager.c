@@ -8,7 +8,6 @@
 #include <time.h>
 
 #define STRING_SIZE 256
-#define PASSWORD "123456"
 #define HUNT_FILE "hunt.log"
 #define TREASURE_FILE "treasure.dat"
 
@@ -219,25 +218,6 @@ void removeHunt(char* hunt_id) {
     printf("Hunt %s removed.\n", hunt_id);
 }
 
-void resetData(char* password) {
-    if (strcmp(password, PASSWORD) == 0) {
-        printf("Are you sure?\n");
-        printf("Answer (Yes/No): ");
-        char line[STRING_SIZE];
-        fgets(line, sizeof(line), stdin);
-        line[strcspn(line, "\n")] = '\0';
-
-        if (strcmp(line, "Yes") == 0) {
-            system("rm -f logged_hunt-* && rm -rf */hunt.log */treasure.dat */temp.dat */ && rm -rf */");
-            printf("Data successfully erased.\n");
-        } else {
-            printf("Reset process stopped.\n");
-        }
-    } else {
-        printf("Invalid password!\n");
-    }
-}
-
 void printUsage(char* arg) {
     printf("Usage:\n");
     printf("%s --add <hunt_id>\n", arg);
@@ -245,7 +225,6 @@ void printUsage(char* arg) {
     printf("%s --view <hunt_id> <treasure_id>\n", arg);
     printf("%s --remove_treasure <hunt_id> <treasure_id>\n", arg);
     printf("%s --remove_hunt <hunt_id>\n", arg);
-    printf("%s --reset <password>\n", arg);
 }
 
 int main(int argc, char **argv) {
@@ -264,8 +243,6 @@ int main(int argc, char **argv) {
         removeTreasure(argv[2], argv[3]);
     } else if (strcmp(argv[1], "--remove_hunt") == 0) {
         removeHunt(argv[2]);
-    } else if (strcmp(argv[1], "--reset") == 0) {
-        resetData(argv[2]);
     } else {
         printUsage(argv[0]);
     }
